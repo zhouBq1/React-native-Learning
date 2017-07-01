@@ -7,13 +7,14 @@ import {
     StyleSheet ,
     View ,
     PanResponder ,
+    ScrollView ,
 } from  'react-native' ;
 
 var styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
         backgroundColor: '#F5FCFF',
     },
     rect:{
@@ -25,6 +26,20 @@ var styles = StyleSheet.create({
         alignSelf:'flex-end',
     }
 });
+
+class  ScaleScrollView extends Component{
+    constructor(props){
+        super(props);
+    }
+    render(){
+        return (<ScrollView style={styles.container}
+            maximumZoomScale={2.0}
+    minimumZoomScale={0.5}
+        >
+            <View style={styles.rect}></View>
+        </ScrollView>)
+    }
+}
 
 export default class PanGestureTestView extends Component{
     constructor(props){
@@ -97,3 +112,4 @@ export default class PanGestureTestView extends Component{
     }
 }
 
+module.exports = ScaleScrollView;
