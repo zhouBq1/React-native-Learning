@@ -27,8 +27,19 @@ var  styles=StyleSheet.create({
         width: 200,
         height: 200,
         borderWidth: 1,
-        borderColor: 'black'
-    }
+        borderColor: 'black' ,
+        justifyContent:'center' ,
+        alignItems:'center',
+
+    },
+    rect_inner: {
+        width: 100,
+        height: 100,
+        borderWidth: 1,
+        borderColor: 'white' ,
+        alignSelf:'center' ,
+
+    },
 })
 
 class MyButton extends React.Component{
@@ -49,52 +60,7 @@ class MyButton extends React.Component{
 
 }
 
-class GestureResponderView extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={
-            bg:'gray',
-        }
-    }
-    //挂载组件开始
-    componentWillMount(){
-        this._gestureHandlers={
-            //s是否激活responder
-            onStartShouldSetResponder:()=>true ,
-        //
-            onMoveShouldSetPanResponder:()=> true,
-        //    responder 被激活
-            onResponderGrant:()=>{
-                console.log('the grant function');
-                // this.states.bg='red';
-                this.setState({
-                    bg:'red',
-                });
-            },
-            onResponderMove:()=>{
-                console.log(123);
-            },
-            onResponderRelease:()=>{
-                console.log('do the release function');
-                // this.states.bg= 'green';
-                this.setState({
-                bg:'green',
-            });
-            },
-        }
-    }
-    render(){
-        console.log(`current color is ${this.state.bg}`);
-        return <View style={styles.container}>
-            <View
-            {...this._gestureHandlers}
-            style={
-                [styles.rect ,{backgroundColor:this.state.bg}]
-            }
-        ></View>
-        </View>
-    }
-}
+
 
 class  HomeView extends React.Component{
 
@@ -117,13 +83,7 @@ class  HomeView extends React.Component{
 
             />
 
-            <TouchableHighlight
-                activeOpacity ={0.8}
-                underlayColor='#eee'
-                onLongPress={this._longClick.bind(this)}
-                style={styles.touchStyle}>
-                <Text>长按事件</Text>
-            </TouchableHighlight>
+            <GestureResponderView></GestureResponderView>
         </View>)
     };
 }
@@ -175,4 +135,4 @@ const MyNavigator= StackNavigator({
     Home:{screen:HomeView},
     SecondView:{screen:SecondView},
 });
-module.exports=GestureResponderView;
+module.exports=MyNavigator;
