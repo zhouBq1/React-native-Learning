@@ -4,10 +4,8 @@
  * @flow
  */
 
-import React ,{Component} from "react"
-import {
-  AppRegistry,
-} from 'react-native';
+
+
 import setup from './setup';
 //布局
 import FlexBoxTest from  './FlexBoxTest';
@@ -23,4 +21,15 @@ import ScaleScrollView from './PanGestureTestView'
 //动画
 import AnimatedView from './AnimatedViewTest'
 
-AppRegistry.registerComponent('untitled2', () => AnimatedView);
+//定时器
+import TimerTest from './TimerTest';
+
+//mobx
+import ReactNativeMobX from './app/mobx/ReactNativeMobxTest';
+
+import {
+    AppRegistry,
+} from 'react-native' ;
+
+
+AppRegistry.registerComponent('untitled2', () => ReactNativeMobX)
