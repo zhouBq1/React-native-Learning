@@ -31,5 +31,8 @@ import {
     AppRegistry,
 } from 'react-native' ;
 
+//navigator导航栏
+import NavigationTest_ori from './app/navigator/oriNavigator/NavigatorTest';
 
-AppRegistry.registerComponent('untitled2', () => ReactNativeMobX)
+
+AppRegistry.registerComponent('untitled2', () => NavigationTest_ori)
