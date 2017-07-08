@@ -3,9 +3,12 @@
  */
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableHighlight, StyleSheet } from 'react-native';
+import {action ,} from  'mobx'
 import {observer} from 'mobx-react/native';
 import NewItem from './NewItem';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+//不使用setState时候，如果去除observer则试图停止更新 ，
 @observer
 class TodoList extends Component {
     constructor () {
@@ -15,22 +18,34 @@ class TodoList extends Component {
             showInput: false
         }
     }
+    @action
     toggleInput () {
-        this.setState({ showInput: !this.state.showInput })
+         this.setState({ showInput: !this.state.showInput })
+        // this.state.showInput = !this.state.showInput;
+        console.warn(this.state.showInput);
     }
+    @action
     addListItem () {
         this.props.store.addListItem(this.state.text)
-        this.setState({
-            text: '',
-            showInput: !this.state.showInput
-        })
+        // this.setState({
+        //     text: '',
+        //     showInput: !this.state.showInput
+        // })
+        this.state.text='';
+        this.state.showInput = !this.state.showInput;
+        console.warn(this.props.store.listCount());
     }
+    @action
     removeListItem (item) {
         this.props.store.removeListItem(item)
     }
+    @action
     updateText (text) {
-        this.setState({text})
+        //this.setState({text})
+        this.state.text=text;
+        console.warn(this.state.text);
     }
+    @action
     addItemToList (item) {
         this.props.navigator.push({
             component: NewItem,
@@ -52,11 +67,11 @@ class TodoList extends Component {
                 {!list.length ? <NoList /> : null}
                 <View style={{flex:1}}>
                     {list.map((l, i) => {
-                        return <View key={i} style={styles.itemContainer}>
-                            <Text
-                                style={styles.item}
-                                onPress={this.addItemToList.bind(this, l)}>{l.name.toUpperCase()}</Text>
-                            <Text
+                                return <View key={i} style={styles.itemContainer}>
+                                <Text
+                                    style={styles.item}
+                                    onPress={this.addItemToList.bind(this, l)}>{l.name.toUpperCase()}</Text>
+                                <Text
                                 style={styles.deleteItem}
                                 onPress={this.removeListItem.bind(this, l)}>Remove</Text>
                         </View>
@@ -84,6 +99,7 @@ class TodoList extends Component {
 
 const NoList = () => (
     <View style={styles.noList}>
+        <Icon name="window-close" size={30} color="#900" />
         <Text style={styles.noListText}>No List, Add List To Get Started</Text>
     </View>
 )
@@ -135,6 +151,12 @@ const styles = StyleSheet.create({
         padding: 20,
         color: '#156e9a'
     },
+    icon:{
+        height : 45 ,
+        width : 45 ,
+        alignSelf:'center' ,
+
+    } ,
     noList: {
         flex: 1,
         justifyContent: 'center',

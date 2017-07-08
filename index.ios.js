@@ -34,5 +34,15 @@ import {
 //navigator导航栏
 import NavigationTest_ori from './app/navigator/oriNavigator/NavigatorTest';
 
+//设置发布环境中的全局变量
+if(!__DEV__)
+{
+    global.console = {
+        info : ()=>{} ,
+        log : () =>{} ,
+        warn :()=>{} ,
+        error :() => {} ,
+    }
+}
 
 AppRegistry.registerComponent('untitled2', () => NavigationTest_ori)

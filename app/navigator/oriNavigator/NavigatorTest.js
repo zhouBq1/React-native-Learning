@@ -1,6 +1,7 @@
 import React ,{Component} from 'react';
 import {Navigator} from 'react-native-deprecated-custom-components';
 import DataManagerCls from './DataStoreClass';
+import ToDoList from './ToDoList';
 import FristRouteView from './InitRouteView' ;
 import {
     View ,
@@ -33,7 +34,7 @@ class NavigatorOriginTest extends Component
                 {
                     component:FristRouteView ,
                     passProps: {
-                        store: DataManagerCls ,
+                        store: ToDoList ,
                     },
                 }
             }
