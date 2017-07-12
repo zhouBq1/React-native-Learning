@@ -2,7 +2,6 @@
  * Created by zhoubao on 2017/7/7.
  */
 import {observable ,action ,computed ,autorun} from 'mobx';
-// import {} from ''
 import React from 'react';
 
 let index = 0;
@@ -10,6 +9,7 @@ class ToDoList
 {
     @observable list = [];
 
+    @action
     addListItem1(li) {
         this.list.push({
             name : li,
@@ -17,17 +17,16 @@ class ToDoList
             index
         });
         index++
-        autorun(()=>{
-            console.log('list change and the autorun function did run ' + this.list);
-        });
     };
 
+    @action
     removeListItem(li) {
        this.list = this.list.filter((rmItm) =>{
            return li.index !== rmItm.index;
        })
     }
 
+    @action
     addItemForList(li ,item){
         this.list.forEach((item1) => {
             if(item1.index === li.index){
@@ -37,5 +36,9 @@ class ToDoList
     }
 
 }
+
 const ToDoListCls = new ToDoList();
+autorun(()=>{
+    console.log('list change and the autorun function did run ' + ToDoListCls.list);
+});
 export default ToDoListCls;

@@ -26,6 +26,7 @@ import TimerTest from './TimerTest';
 
 //mobx
 import ReactNativeMobX from './app/mobx/ReactNativeMobxTest';
+import ObserverTest from './app/navigator/oriNavigator/ObserverTest';
 
 import {
     AppRegistry,

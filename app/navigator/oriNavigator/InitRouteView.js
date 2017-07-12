@@ -2,7 +2,7 @@
  * Created by zhoubao on 2017/7/5.
  */
 import React ,{Component} from  'react';
-import {observable,action} from  'mobx'
+import {observable,action} from  'mobx';
 import {observer} from 'mobx-react/native'
 import {
     View ,
@@ -10,6 +10,8 @@ import {
     StyleSheet ,
     Text ,
     TextInput ,
+    Alert ,
+    Button ,
 } from  'react-native' ;
 import {Navigator} from 'react-native-deprecated-custom-components';
 import  SecondView from './SecondRouteView';
@@ -49,7 +51,7 @@ let styles = StyleSheet.create({
         borderWidth:StyleSheet.hairlineWidth,
         backgroundColor:'white',
         alignItems:'center' ,
-        justifyContent:'center' ,
+        // justifyContent:'center' ,
         flex:1 ,
     } ,
     noList:{
@@ -64,24 +66,31 @@ let styles = StyleSheet.create({
         borderBottomColor:'#968e9a' ,
         backgroundColor: 'white' ,
         flexDirection:'row' ,
-        height:45 ,
+        justifyContent: 'center' ,
+        // height:45 ,
 
     } ,
     add:{
         color:'#156e9a' ,
         fontSize :26 ,
-        padding:20 ,
-        textAlign:'center' ,
-        flex:1 ,
+        padding:15 ,
+        // height: 44 ,
+        textAlign:'left' ,
+        flex: 2,
+        flexWrap:'wrap' ,
+        alignSelf:'center' ,
     } ,
     space:{
         backgroundColor:'white' ,
     },
     remove:{
         color:'gray' ,
-        fontSize:26 ,
-        padding:20 ,
-        textAlign:'center' ,
+        fontSize:22 ,
+        padding:15 ,
+        // height: 44,
+        textAlign:'right' ,
+        flex:1 ,
+        alignSelf:'center' ,
     } ,
 
     addListItem:{
@@ -98,9 +107,14 @@ let styles = StyleSheet.create({
 });
 
 //显示底部输入框状态：是否折叠
-
 @observer
 export default class FirstView extends Component{
+
+    //需要观察的对象位于组件之内： （注意不能再render方法中对观察对象进行更改，），能正常触发componentWillReact，
+    //需要观察的对象位于组件外 ，同样
+    //之前一直没有出现结果，在于 list.map函数没有将View作为返回值return ，而是将View作为了函数中的方法进行执行，没有返回内容。
+    @observable
+    testValue = 1 ;
 
     constructor(props)
     {
@@ -111,7 +125,24 @@ export default class FirstView extends Component{
         }
     }
 
-    _navigatorNext()
+    @action
+    _addListItemAction = ()=> {
+        this.testValue = this.testValue + 1;
+        let {inputFolded} = this.state;
+        inputFolded = !inputFolded;
+        // this.props.store.addListItem1(this.state.text);
+        this.state.text.length && this.props.store.addListItem1(this.state.text);
+        this.setState({inputFolded:inputFolded});
+        this.state.text = '';
+    }
+
+    @action
+    _removeListItem = (rmListI)=>{
+        Alert.alert('remove title' ,'ready to remove ?' ,[{text:'yes(to remove!)' ,onPress:()=>{this.props.store.removeListItem(rmListI)} } ,{text:'no(not to remove)' ,onPress:onpress=()=>{}}],null ,'login-password');
+        // this.props.store.removeListItem(rmListI);
+    }
+
+    _navigatorNext = ()=>
     {
         console.log('do the navigation push action');
         this.props.navigator.push({
@@ -122,25 +153,21 @@ export default class FirstView extends Component{
         });
     }
 
-    @action
-    _addListItemAction = ()=> {
-        let {inputFolded} = this.state;
-        inputFolded = !inputFolded;
-        // this.props.store.addListItem1(this.state.text);
-        this.state.text.length && this.props.store.addListItem1(this.state.text);
-        this.setState({inputFolded:inputFolded});
-        this.state.text = '';
-    }
-
     _textChange(newText){
         this.state.text=newText;
+    }
+
+    componentWillReact(){
+        console.log('component will react' + this.testValue);
+    }
+    componentDidMount() {
+        console.log('the component did mount');
     }
 
     render (){
 
         const {store} = this.props;
         const {list} = this.props.store;
-
         //从store中获取到list属性。
         return(<View style={styles.container}>
             <View style={styles.header}>
@@ -148,12 +175,14 @@ export default class FirstView extends Component{
             </View>
             <View style={styles.listContainer}>
                 {list.length <= 0?<NoList/>:list.map((li ,index)=>{
-                    <View style={styles.listItem}>
-                        <Text style={styles.add}>`*${li.name}`</Text>
+                    console.log('item index :' + index + ' ---li : '+ li );
+                   return <View key ={index} style={styles.listItem}>
+                        <Text style={styles.add} onPress={this._navigatorNext.bind(this)}>*{li.name}</Text>
+                       <Text style={styles.remove} onPress={this._removeListItem.bind(this,li)}>REMOVE</Text>
                     </View>
                 })}
             </View>
-            <Text style={styles.addListItem} onPress={this._addListItemAction.bind(this)}>add a new list item</Text>
+            <Text style={styles.addListItem} onPress={this._addListItemAction.bind(this)}>add a new list item {this.testValue}</Text>
              {/*<AddList/>*/}
             {this.state.inputFolded&&<TextInput style={styles.textInput} placeholder={'add the list name here'} autoCorrect={true} onChangeText={(text)=>{
                 this._textChange(text);
