@@ -11,6 +11,7 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <AVFoundation/AVFoundation.h>
 
 @implementation AppDelegate
 
@@ -18,14 +19,22 @@
 {
   NSURL *jsCodeLocation;
 
+  AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+  NSError *setCategoryError = nil;
+  BOOL success = [audioSession setCategory:AVAudioSessionCategoryPlayback error:&setCategoryError];
+  if (!success) {
+    NSLog(@"the audio session setting error :%@" ,setCategoryError);
+  }
+  
 //  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
   jsCodeLocation = [NSURL URLWithString:@"http://192.168.0.177:8081/index.ios.bundle?plateform=ios"];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"untitled2"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
+  
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
-
+  
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
   rootViewController.view = rootView;

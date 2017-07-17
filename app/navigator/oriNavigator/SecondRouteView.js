@@ -2,6 +2,7 @@
  * Created by zhoubao on 2017/7/5.
  */
 import React ,{Component} from  'react';
+import VideoTest from '../../MediaPlayer/AudioPlayer/VideoTest'
 import {
     View ,
     TouchableOpacity ,
@@ -9,22 +10,16 @@ import {
 
 } from  'react-native' ;
 import {Navigator} from 'react-native-deprecated-custom-components';
+import Video from "react-native-video";
 
 let styles = StyleSheet.create({
     container:{
-        width:375 ,
-        height:667 ,
-        backgroundColor:'#000' ,
-        alignItems:'center' ,
-        alignContent:'center' ,
+        flex:1 ,
+        backgroundColor:'black' ,
+        // alignItems:'center' ,
+        // alignContent:'center' ,
+        //这里不能设置alignContent ，否则，子组件的款第不能梓摄影，导致不能铺满整个屏幕，可以在子组件中重新设置alignContent来解决。
     },
-    button:{
-        backgroundColor:'#4f33aa' ,
-        width :260 ,
-        height:180 ,
-        borderColor:'#000' ,
-        borderWidth:2.0 ,
-    }
 })
 
 
@@ -37,10 +32,8 @@ export default class FirstView extends Component{
     }
     render (){
         return <View style={styles.container}>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={this._navigatorBack.bind(this)}
-            />
+            <VideoTest />
+
         </View>;
     }
 }
