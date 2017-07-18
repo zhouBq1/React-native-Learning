@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  NSURL *jsCodeLocation;
+  
 
   AVAudioSession *audioSession = [AVAudioSession sharedInstance];
   NSError *setCategoryError = nil;
@@ -26,6 +26,7 @@
     NSLog(@"the audio session setting error :%@" ,setCategoryError);
   }
   
+  NSURL *jsCodeLocation;
 //  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
   jsCodeLocation = [NSURL URLWithString:@"http://192.168.0.177:8081/index.ios.bundle?plateform=ios"];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation

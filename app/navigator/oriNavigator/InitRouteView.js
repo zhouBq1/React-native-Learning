@@ -14,7 +14,10 @@ import {
     Button ,
 } from  'react-native' ;
 import {Navigator} from 'react-native-deprecated-custom-components';
-import  SecondView from './SecondRouteView';
+import  VideoView from './SecondRouteView';
+import StoreView from '../../storage/AsyncStorageExample';
+import rnStoreExample from  '../../storage/rnStoreExample';
+
 
 let styles = StyleSheet.create({
     container:{
@@ -142,11 +145,27 @@ export default class FirstView extends Component{
         // this.props.store.removeListItem(rmListI);
     }
 
-    _navigatorNext = ()=>
+
+    _navigatorNext = (indx)=>
     {
         console.log('do the navigation push action');
+        let nextPage =  null;
+        switch (indx){
+            case 0:
+                nextPage = VideoView;
+                break;
+            case 1:
+                nextPage = StoreView;
+                break;
+            case 2:
+                nextPage  = rnStoreExample ;
+                break;
+            default:
+                console.warn('input index is wrong');
+                break;
+        }
         this.props.navigator.push({
-            component:SecondView ,
+            component:nextPage ,
             passProps:{
                 store:this.props.store ,
             }
@@ -177,7 +196,7 @@ export default class FirstView extends Component{
                 {list.length <= 0?<NoList/>:list.map((li ,index)=>{
                     console.log('item index :' + index + ' ---li : '+ li );
                    return <View key ={index} style={styles.listItem}>
-                        <Text style={styles.add} onPress={this._navigatorNext.bind(this)}>*{li.name}</Text>
+                        <Text style={styles.add} onPress={this._navigatorNext.bind(this ,index)}>*{li.name}</Text>
                        <Text style={styles.remove} onPress={this._removeListItem.bind(this,li)}>REMOVE</Text>
                     </View>
                 })}

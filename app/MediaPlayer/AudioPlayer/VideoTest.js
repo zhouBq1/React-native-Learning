@@ -4,7 +4,7 @@ import {
 	View ,
 	Text ,
 	TouchableOpacity ,
-
+	AsyncStorage,
 
 } from 'react-native'
 import Video from  'react-native-video' ;
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
 })
 
 
+
 export default class VideoTest extends Component
 {
 	video:Video ;
@@ -147,7 +148,30 @@ export default class VideoTest extends Component
 
 
 	@observer
+	async  _test (){
+		let value;
+		try {
+			value = await AsyncStorage.getItem('store key');
+			if (value != null)
+			{
+				console.log('value is ' +  value);
+			}
+			else{
+
+				console.log('存储中无数据,初始化为空数据');
+
+			}
+		}catch (error){
+			console.log('error is :' + error);
+		}
+
+
+	}
 	render(){
+		console.log('the local key-value is ' );
+
+		this._test().done();
+
 		return (
 			<View style={styles.container}>
 				<TouchableOpacity onPress={this._pauseStatusChange} style={styles.fullScreen}>
