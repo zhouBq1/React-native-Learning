@@ -17,6 +17,8 @@ import {Navigator} from 'react-native-deprecated-custom-components';
 import  VideoView from './SecondRouteView';
 import StoreView from '../../storage/AsyncStorageExample';
 import rnStoreExample from  '../../storage/rnStoreExample';
+import RNStorage from '../../storage/RNStorage' ;
+import SoundTest from '../../MediaPlayer/SoundPlayer/SoundTest'
 
 
 let styles = StyleSheet.create({
@@ -109,6 +111,7 @@ let styles = StyleSheet.create({
     }
 });
 
+
 //显示底部输入框状态：是否折叠
 @observer
 export default class FirstView extends Component{
@@ -142,7 +145,6 @@ export default class FirstView extends Component{
     @action
     _removeListItem = (rmListI)=>{
         Alert.alert('remove title' ,'ready to remove ?' ,[{text:'yes(to remove!)' ,onPress:()=>{this.props.store.removeListItem(rmListI)} } ,{text:'no(not to remove)' ,onPress:onpress=()=>{}}],null ,'login-password');
-        // this.props.store.removeListItem(rmListI);
     }
 
 
@@ -150,6 +152,10 @@ export default class FirstView extends Component{
     {
         console.log('do the navigation push action');
         let nextPage =  null;
+        global.rnStorage = null;
+        console.log('the rnStorage is ' + RNStorage);
+	    RNStorage._getStorage();
+	    rnStorage = RNStorage ;
         switch (indx){
             case 0:
                 nextPage = VideoView;
@@ -160,6 +166,10 @@ export default class FirstView extends Component{
             case 2:
                 nextPage  = rnStoreExample ;
                 break;
+            case 3:
+                nextPage = SoundTest;
+                break;
+
             default:
                 console.warn('input index is wrong');
                 break;
@@ -203,7 +213,7 @@ export default class FirstView extends Component{
             </View>
             <Text style={styles.addListItem} onPress={this._addListItemAction.bind(this)}>add a new list item {this.testValue}</Text>
              {/*<AddList/>*/}
-            {this.state.inputFolded&&<TextInput style={styles.textInput} placeholder={'add the list name here'} autoCorrect={true} onChangeText={(text)=>{
+            {this.state.inputFolded&&<TextInput style={styles.textInput} placeholder={'add the list name here'} autoCorrect={false} onChangeText={(text)=>{
                 this._textChange(text);
             }
             }/>}
@@ -221,24 +231,8 @@ const NoList = () => {
 
 const ListItem = () => {
     let {list} = this.props.store;
-    // return (list.map((li ,index)=>{
-    //     <View style={styles.listItem}>
-    //         <Text style={styles.add}>`*${li.name}`</Text>
-    //     </View>
-    // }))
 }
 
-// function addListItemAction() {
-//      let {inputFolded} = this.state;
-//      inputFolded = !inputFolded;
-//      this.setState({inputFolded:inputFolded})
-//
-//     console.warn(`current the isAddNewFolded is ${isAddNewFolded}` );
-// }
-// const AddList = ()=>{
-//
-//     return (  <Text style={styles.addListItem} onPress={addListItemAction.bind(this)}>add a new list item</Text>)
-// }
 const InputListName = ()=>{
     return (<TextInput style={styles.textInput} placeholder={'add the list name here'} autoCorrect={true}/>)
 }

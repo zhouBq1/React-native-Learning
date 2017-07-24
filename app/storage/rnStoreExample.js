@@ -10,20 +10,19 @@ import {
 
 } from 'react-native';
 var PickerItemIOS = PickerIOS.Item;
-import RNStorage from './RNStorage'
 const RN_STORAGE_KEY = 'rn storage key';
 const RN_STORAGE_VALUES = ['value1' ,'value2' ,'value3' ,'value4' ,'value5'];
 export default class rnStoreExample extends Component {
 	constructor(props){
 		super(props);
 		this.state={
+
 			currentValue: RN_STORAGE_VALUES[1] ,
 			currentMessage:'no message for rn storage ,waitting to start' ,
 		};
 	}
 
 	componentWillMount() {
-		
 	}
 	render() {
 		return (
@@ -41,7 +40,7 @@ export default class rnStoreExample extends Component {
 					}}>
 
 					{
-						COURSE_ITEMS.map((value) =>{
+						RN_STORAGE_VALUES.map((value) =>{
 							return <PickerItemIOS key={value} value={value} label={value}/>
 						})
 					}
@@ -66,38 +65,37 @@ export default class rnStoreExample extends Component {
 	//add
 	_storeActionAdd= (itemKey ,itemValue)=>{
 
-		rnStorage._save(itemKey ,itemValue);
-		this.setState({
-			currentMessage:'now set the key-value pair succeed : '+ itemKey +'=='+ rnStorage.load(itemKey ,(ret) =>{
-				console.log('ret parameter is ' + ret);
-			}) ,
-			//这里如果使用AsyncStore.getItem会没有将current设置成功。是否因为这个操作是异步执行？导致结果不能及时获取到，
-			currentValue:itemValue
+		rnStorage._save(itemKey ,itemValue)
+			.then(()=>{
+				rnStorage._load(itemKey ,(ret) =>{
+					console.log('ret parameter is ' + ret);
+					this.setState({
+						currentMessage:'now set the key-value pair succeed : '+ itemKey +'=='+ret ,
+						currentValue:itemValue
+					})
+				})
 		});
+			//这里如果使用AsyncStore.getItem会没有将current设置成功。是否因为这个操作是异步执行？导致结果不能及时获取到，
 	}
 	//remove
-	_storeActionRemove= async(itemKey)=>{
-		rnStorage._remove(itemKey);
-		this.setState({
-			currentMessage:'now remove the key-value pair succeed :' + itemKey ,
-			currentValue: ''
+	_storeActionRemove=(itemKey)=>{
+		rnStorage._remove(itemKey).then(()=>{
+			this.setState({
+				currentMessage:'now remove the key-value pair succeed :' + itemKey +'and set the selected value at 0',
+				currentValue: RN_STORAGE_VALUES[0] ,
+			});
 		});
-
 	}
 	//get
-	_storeActionGet= async (itemKey)=>{
-		// let tmpValue = await AsyncStorage.getItem(itemKey ,(error ,result) => {
-		//
-		// }).done(this.setState({
-		// 	currentMessage:'now get the key-value pair succeed :' + itemKey +'==' + tmpValue ,
-		// }));
+	_storeActionGet= async(itemKey)=>{
+
 		let tmpValue = await rnStorage._load(itemKey ,(ret) =>{
 			console.log('ret para is ' + ret);
-		});
-		this.setState({
+		}).then(()=>{
+			this.setState({
 				currentMessage:'now get the key-value pair succeed :' + itemKey +'==' + tmpValue ,
 			});
-
+		});
 		return tmpValue;
 	}
 

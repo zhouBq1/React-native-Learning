@@ -1,6 +1,7 @@
 /**
  * Created by zhoubao on 2017/7/18.
  */
+import React, {Component} from 'react'
 import {
 	AsyncStorage ,
 } from 'react-native';
@@ -11,15 +12,20 @@ import  SYNC from './SYNC'
 
 const RN_STORAGE_SIZE = 1000;
 const RN_STORAGE_DEFAULT_EXPIRES = 1000 * 60 * 60 * 24;
-
-
+var store ;
 //	outter functions
 //定义为static则只能通过类来进行访问，而不能在非静态方法中使用this访问，
- class RN_Storage{
-	static _getStorage(){
+//而RNStorage是否需要作为类导出？实例时候可以通过_proto_方法获取原型 ，并添加方法，或属性。
+ class RNStorage
+ {
+
+ 	test(){
+ 		console.log('this is the test function ');
+    }
+	 _getStorage(){
 		if (rnStorage == null || rnStorage == undefined)
 		{
-			rnStorage = Storage({
+			store = new Storage({
 				//最大容量 ，默认1000 跳循环进行访问、
 				size:RN_STORAGE_SIZE ,
 				//// 存储引擎：对于RN使用AsyncStorage，对于web使用window.localStorage
@@ -39,52 +45,53 @@ const RN_STORAGE_DEFAULT_EXPIRES = 1000 * 60 * 60 * 24;
 				sync: SYNC  // 这个sync文件是要你自己写的
 			});
 		}
-		return rnStorage;
+
+		return store;
 	}
 
-	static _save3(key ,value ,expire){
+	_save3(key ,value ,expire){
 		this._isInited();
-		rnStorage.save({
+		return store.save({
 			key:key ,
 			data:value ,
 			expires:expire ,
 		})
 	}
 
-	static _save(key ,value){
-		this._save3(key ,value ,null);
+	_save(key ,value){
+		return this._save3(key ,value ,null);
 	}
 
-	static _remove(key){
+	_remove(key){
 		this._isInited();
-		rnStorage.remove({
+		return store.remove({
 			key:key ,
 		})
 	}
 	//清除所有数据
-	static _removeAll(){
+	_removeAll(){
 		this._isInited();
-		rnStorage.clearMap();
+		return store.clearMap();
 	}
 	//清除键下的所有数据。
-	static _clearDataByKey(key){
+	_clearDataByKey(key){
 		this._isInited();
-		rnStorage.clearMapForKey(key);
+		return store.clearMapForKey(key);
 	}
 
 	/**
 	 查询数据
 	 */
 
-	static _load(key,callBack){
-		this._load3(key,null,null,callBack);
+	_load(key,callBack){
+		return this._load3(key,null,null,callBack);
 	}
 
 
-	static _load3(key,params,someFlag,callBack){
+	_load3(key,params,someFlag,callBack){
 
 		this._isInited();
-		rnStorage.load({
+		return store.load({
 			key: key,
 			// autoSync(默认为true)意味着在没有找到数据或数据过期时自动调用相应的sync方法
 			autoSync: true,
@@ -116,14 +123,13 @@ const RN_STORAGE_DEFAULT_EXPIRES = 1000 * 60 * 60 * 24;
 		});
 	}
 
-	static _isInited(){
+	_isInited(){
 		if (rnStorage == null || rnStorage == undefined)
 		{
 			throw 'need to call _getStorage to initialize and do some cofigure';
 		}
 	}
 }
+var tmpStore = new RNStorage();
 
-
-global.rnStorage = new RN_Storage() ;
- module.exports = RN_Storage;
+export default  tmpStore;

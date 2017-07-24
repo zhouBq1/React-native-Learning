@@ -177,7 +177,7 @@ export default class VideoTest extends Component
 				<TouchableOpacity onPress={this._pauseStatusChange} style={styles.fullScreen}>
 				<Video
 					ref={(ref: Video) => { this.video = ref }}
-					source={require('./testMV.mp4')}
+					source={require('../resource/videos/testMV.mp4')}
 					style={styles.fullScreen}
 					rate={this.rate}
 					paused={this.pause}
