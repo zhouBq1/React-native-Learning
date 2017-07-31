@@ -18,7 +18,8 @@ import  VideoView from './SecondRouteView';
 import StoreView from '../../storage/AsyncStorageExample';
 import rnStoreExample from  '../../storage/rnStoreExample';
 import RNStorage from '../../storage/RNStorage' ;
-import SoundTest from '../../MediaPlayer/SoundPlayer/SoundTest'
+import SoundTest from '../../MediaPlayer/SoundPlayer/SoundTest';
+import NativeParaSendTest from '../../Native2JS/NativeParaSendTest'
 
 
 let styles = StyleSheet.create({
@@ -169,7 +170,9 @@ export default class FirstView extends Component{
             case 3:
                 nextPage = SoundTest;
                 break;
-
+            case 4:
+                nextPage = NativeParaSendTest;
+                break ;
             default:
                 console.warn('input index is wrong');
                 break;

@@ -12,6 +12,9 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <AVFoundation/AVFoundation.h>
+#import "TestManager.h"
+#import "EventEmitterManager.h"
+
 
 @implementation AppDelegate
 
@@ -41,6 +44,10 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+//  EventEmitterManager * evtMgr = [[EventEmitterManager alloc] init];
+//  [evtMgr emitterEvent];
+  
   return YES;
 }
 

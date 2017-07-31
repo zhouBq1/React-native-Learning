@@ -2,7 +2,7 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  */
-import React ,{Component} from 'react'
+import React ,{Component } from 'react'
 import {
 	AppRegistry,
 	StyleSheet,
@@ -13,6 +13,10 @@ import {
 	TouchableOpacity,
 
 } from 'react-native';
+
+
+
+
 var PickerItemIOS = PickerIOS.Item;
 var COURSE_ITEMS=['C++','Java','Android','iOS','React Native','Swift','.Net'];
 const STORE_KEY = 'store key'
@@ -28,7 +32,9 @@ export default class PickerIOSDemo extends Component {
 	}
 
 	render() {
+
 		return (
+
 			<View style={styles.container}>
 				<Text style={styles.welcome}>
 				 asyncStorage 使用实例
@@ -96,6 +102,7 @@ export default class PickerIOSDemo extends Component {
 
 		return tmpValue;
 	}
+
 
 }
 
