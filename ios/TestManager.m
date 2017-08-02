@@ -54,4 +54,9 @@ RCT_REMAP_METHOD(addPromiseFun,
   RCTLog(@"do the find Event");
 }
 
+- (NSDictionary<NSString *, id> *)constantsToExport
+{
+  return @{@"testExportedConstant":@"constToExport"};
+}
+
 @end

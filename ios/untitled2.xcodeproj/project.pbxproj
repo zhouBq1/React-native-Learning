@@ -42,6 +42,7 @@
 		497252873D104996995D205E /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF4C76F1B7F843469A6209FB /* Entypo.ttf */; };
 		4C81072BAFE6422A8E81D533 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF84A741DB4B47F3AAE052A2 /* MaterialIcons.ttf */; };
 		5833D0181F29BB960030D30A /* TestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5833D0171F29BB960030D30A /* TestManager.m */; };
+		58408CF71F300E5800DCE26C /* RCTMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58408CF61F300E5800DCE26C /* RCTMapManager.m */; };
 		588790291F2F166C0024309B /* EventEmitterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 588790281F2F166C0024309B /* EventEmitterManager.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		61D84D66B00E4E5381A14F1A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03858AE1CC6448DFB598F5F3 /* FontAwesome.ttf */; };
@@ -316,6 +317,8 @@
 		43CC84E0842D4345A7861A75 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		5833D0161F29BB960030D30A /* TestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestManager.h; sourceTree = "<group>"; };
 		5833D0171F29BB960030D30A /* TestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestManager.m; sourceTree = "<group>"; };
+		58408CF51F300E5800DCE26C /* RCTMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTMapManager.h; sourceTree = "<group>"; };
+		58408CF61F300E5800DCE26C /* RCTMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTMapManager.m; sourceTree = "<group>"; };
 		588790271F2F166C0024309B /* EventEmitterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventEmitterManager.h; sourceTree = "<group>"; };
 		588790281F2F166C0024309B /* EventEmitterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventEmitterManager.m; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -509,6 +512,8 @@
 				5833D0171F29BB960030D30A /* TestManager.m */,
 				588790271F2F166C0024309B /* EventEmitterManager.h */,
 				588790281F2F166C0024309B /* EventEmitterManager.m */,
+				58408CF51F300E5800DCE26C /* RCTMapManager.h */,
+				58408CF61F300E5800DCE26C /* RCTMapManager.m */,
 			);
 			name = RCTManager;
 			sourceTree = "<group>";
@@ -1132,6 +1137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5833D0181F29BB960030D30A /* TestManager.m in Sources */,
+				58408CF71F300E5800DCE26C /* RCTMapManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				588790291F2F166C0024309B /* EventEmitterManager.m in Sources */,

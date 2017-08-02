@@ -14,13 +14,20 @@
 #import <AVFoundation/AVFoundation.h>
 #import "TestManager.h"
 #import "EventEmitterManager.h"
+#import <MapKit/MapKit.h>
 
-
+@interface AppDelegate ()<MKMapViewDelegate>
+@property (nonatomic ,strong) MKMapView * mpView;
+@end
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   
+  _mpView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+  _mpView.delegate = self;
+  _mpView.mapType = MKMapTypeStandard;
+
 
   AVAudioSession *audioSession = [AVAudioSession sharedInstance];
   NSError *setCategoryError = nil;
@@ -41,6 +48,13 @@
   
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
+  
+  _mpView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+  _mpView.delegate = self;
+  _mpView.mapType = MKMapTypeStandard;
+  _mpView.backgroundColor = [UIColor grayColor];
+
+  
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];

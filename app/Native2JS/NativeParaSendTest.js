@@ -3,8 +3,10 @@
  */
 import React ,{Component} from 'react';
 import {
+	//native module
 	NativeModules ,
 	NativeEventEmitter ,
+	//native component
 
 	StyleSheet ,
 	View ,
@@ -12,6 +14,7 @@ import {
 	Text ,
 
 } from 'react-native';
+import MapViewTest from './MapViewN2J';
 
 const styles = StyleSheet.create({
 	container:{
@@ -34,7 +37,12 @@ const styles = StyleSheet.create({
 		color:'red' ,
 		fontSize:25 ,
 	},
-
+	map :{
+		width:300 ,
+		height:300 ,
+		borderColor:'red' ,
+		borderWidth:2.5 ,
+	}
 
 })
 
@@ -73,7 +81,7 @@ export default  class NativeModuleTest extends Component{
 
 		try {
 			var events = await native_module.addPromiseFun();
-			console.log('the await result event is ' + events);
+			console.log('the await result event is ' + events+',the test exported constant is '+ native_module.testExportedConstant);
 		}catch (e){
 			console.log('the error occur :' + e);
 		}
@@ -84,16 +92,28 @@ export default  class NativeModuleTest extends Component{
 	testFunc4 = ()=>{
 	//	通过订阅def方式来进行特定方法的消息传递
 		var subscribe = eventEmitter_module.addListener('subscrib_func',(testDic)=>{
-			console.log('the testDic  is ' + testDic.testKey);
+			console.log('the testDic  is ' + testDic.testKey );
 		}) ;
 	//	由于采取的订阅方式因此需要在组件或者其他时候对listener进行取消订阅的操作。
 	// 	subscribe.remove();
 	}
 	/*javascript=>native*/
 
+	/*
+	* 本地组件转化为js
+	* */
+	testNativeComponent = () =>{
+		let {mapShow} = this.state;
+		this.setState({
+			mapShow:!mapShow ,
+		})
+	}
 
 	constructor(props){
 		super(props);
+		this.state = {
+			showMap:false ,
+		}
 	}
 	render(){
 		return <View style={styles.container}>
@@ -108,12 +128,20 @@ export default  class NativeModuleTest extends Component{
 				<Text style={styles.button}>点击测试addEvent方法_promise</Text>
 			</TouchableOpacity>
 			<TouchableOpacity onPress={this.testFunc4}>
-				<Text style={styles.button}>点击测试addEvent方法</Text>
+				<Text style={styles.button}>点击测试eventEmitter方法</Text>
 			</TouchableOpacity>
-			<TouchableOpacity onPress={this.testFun1}>
-				<Text style={styles.button}>点击测试addEvent方法</Text>
+			<TouchableOpacity onPress={this.testNativeComponent}>
+				<Text style={styles.button}>点击测试本地组件转化js组件</Text>
 			</TouchableOpacity>
+			{this._mapView()}
 		</View>;
+	}
+	_mapView = ()=>{
+		let {mapShow} = this.state;
+		if (mapShow){
+			return <MapViewTest style={styles.map}></MapViewTest>
+		}
+		return null;
 	}
 
 
