@@ -12,14 +12,21 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <AVFoundation/AVFoundation.h>
+#import <MapKit/MapKit.h>
 #import "TestManager.h"
 #import "EventEmitterManager.h"
-#import <MapKit/MapKit.h>
+
+
+#import "RCTDelegateObj.h"
+
+
+
 
 @interface AppDelegate ()<MKMapViewDelegate>
 @property (nonatomic ,strong) MKMapView * mpView;
 @end
 @implementation AppDelegate
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -36,13 +43,18 @@
     NSLog(@"the audio session setting error :%@" ,setCategoryError);
   }
   
-  NSURL *jsCodeLocation;
-//  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
-  jsCodeLocation = [NSURL URLWithString:@"http://192.168.0.177:8081/index.ios.bundle?plateform=ios"];
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"untitled2"
-                                               initialProperties:nil
-                                                   launchOptions:launchOptions];
+//  使用bridge来进行RNViewController的初始化，用于RN与源生项目的整合，节约RN代码带来的开支 ,项目中所有的js代码在同一个bridge上进行交互，rctRootView=初始化时候， 并不需要进行额外的开销
+ 
+  RCTDelegateObj * RctDelObj = [RCTDelegateObj new];
+  RCTBridge * bridge = [[RCTBridge alloc] initWithDelegate:RctDelObj launchOptions:launchOptions];
+  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge moduleName:@"untitled2" initialProperties:nil];
+  
+//  NSURL *jsCodeLocation;
+//  jsCodeLocation = [NSURL URLWithString:@"http://192.168.0.177:8081/index.ios.bundle?plateform=ios"];
+//  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
+//                                                      moduleName:@"untitled2"
+//                                               initialProperties:nil
+//                                                   launchOptions:launchOptions];
   
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
   

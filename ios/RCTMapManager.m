@@ -26,9 +26,11 @@ RCT_EXPORT_MODULE() ;
     _mpView = [[MKMapView alloc] init];
     _mpView.delegate = self;
     _mpView.mapType = MKMapTypeStandard;
+    
   }
   return _mpView;
 }
+
 
 #pragma mark ----MKMapViewDelegate
 #pragma mark ----

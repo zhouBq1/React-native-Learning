@@ -13,6 +13,11 @@
 //导出组件
 RCT_EXPORT_MODULE();
 //导出方法
+/**
+ 当我们写RCT_EXPORT_METHOD()宏的时候，写导出给JS的函数的时候，如果参数中含有successcallback，errorcallback，切记把这种callback block放在最后，千万不要，把其他类型的参数放在block之后。
+ 
+ 原因是在JS代码一侧有last arg，second arg的判断，当callbackblock 不是以倒数第二第一的位置出现的时候，JS会报exception
+ */
 RCT_EXPORT_METHOD(addEvent:(NSString *)name location:(NSDictionary *)testDic)
 {
 //  NSLog(@"the rct_export_method : name is ->%@ ,location is -> %@" ,name ,location);
@@ -30,7 +35,7 @@ RCT_EXPORT_METHOD(addEvent:(NSString *)name location:(NSDictionary *)testDic)
 RCT_EXPORT_METHOD(addBlockEvent:(RCTResponseSenderBlock)block){
   RCTLog(@"now you are in the block of ios");
   NSArray * events = @[@"sdf" ,@"sdf" ,@"fdf"];
-  NSError * err = [NSError errorWithDomain:@"testError Domain" code:20 userInfo:@{@"usrInfo1":@"value1"}];
+//  NSError * err = [NSError errorWithDomain:@"testError Domain" code:20 userInfo:@{@"usrInfo1":@"value1"}];
   block(@[[NSNull null] ,events]);
 }
 ////promise 类型参数
