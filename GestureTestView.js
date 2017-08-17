@@ -37,7 +37,7 @@ var  styles=StyleSheet.create({
         alignSelf:'center' ,
 
     },
-})
+});
 
 export default class GestureResponderView extends React.Component{
     constructor(props){
@@ -82,7 +82,7 @@ export default class GestureResponderView extends React.Component{
                 console.log('do the reject function');
             },
 
-        }
+        };
         this._gestureHandlers2 = {
             onStartShouldSetResponder:() =>true ,
             onMoveShouldSetPanResponder:() =>true ,

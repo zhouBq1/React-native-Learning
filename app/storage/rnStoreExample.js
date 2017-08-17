@@ -60,7 +60,7 @@ export default class rnStoreExample extends Component {
 	//compomnent actions
 	_removePressAction=()=>{
 		this._storeActionRemove(RN_STORAGE_KEY);
-	}
+	};
 	//store action
 	//add
 	_storeActionAdd= (itemKey ,itemValue)=>{
@@ -76,7 +76,7 @@ export default class rnStoreExample extends Component {
 				})
 		});
 			//这里如果使用AsyncStore.getItem会没有将current设置成功。是否因为这个操作是异步执行？导致结果不能及时获取到，
-	}
+	};
 	//remove
 	_storeActionRemove=(itemKey)=>{
 		rnStorage._remove(itemKey).then(()=>{
@@ -85,7 +85,7 @@ export default class rnStoreExample extends Component {
 				currentValue: RN_STORAGE_VALUES[0] ,
 			});
 		});
-	}
+	};
 	//get
 	_storeActionGet= async(itemKey)=>{
 

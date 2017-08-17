@@ -36,6 +36,6 @@ SYNC.user3 =(params)=>{
 		console.warn(err);
 		reject && reject(err);
 	});
-}
+};
 
 export default SYNC

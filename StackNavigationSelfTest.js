@@ -40,7 +40,7 @@ var  styles=StyleSheet.create({
         alignSelf:'center' ,
 
     },
-})
+});
 
 class MyButton extends React.Component{
     _onPressButton(){
@@ -130,7 +130,7 @@ HomeView.navigationOptions = {
     // headerTitleStyle:
     headerTintColor:'red',
     gesturesEnabled:true,
-}
+};
 const MyNavigator= StackNavigator({
     Home:{screen:HomeView},
     SecondView:{screen:SecondView},

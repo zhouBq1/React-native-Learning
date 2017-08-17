@@ -7,14 +7,14 @@ import {StackNavigator} from 'react-navigation'
 
 class NewItem extends Component {
     constructor (props) {
-        super(props)
+        super(props);
         this.state = {
             newItem: ''
         }
     }
     addItem () {
-        if (this.state.newItem === '') return
-        this.props.store.addItem(this.props.item, this.state.newItem)
+        if (this.state.newItem === '') return;
+        this.props.store.addItem(this.props.item, this.state.newItem);
         this.setState({
             newItem: ''
         })
@@ -25,7 +25,7 @@ class NewItem extends Component {
         })
     }
     render () {
-        const { item } = this.props
+        const { item } = this.props;
         return (
             <View style={{flex: 1}}>
                 <View style={styles.heading}>
@@ -56,7 +56,7 @@ const NoItems = () => (
     <View style={styles.noItem}>
         <Text style={styles.noItemText}>No Items, Add Items To Get Started</Text>
     </View>
-)
+);
 const Items = ({items}) => (
     <View style={{flex: 1, paddingTop: 10}}>
         {items.map((item, i) => {
@@ -64,7 +64,7 @@ const Items = ({items}) => (
         })
         }
     </View>
-)
+);
 
 const styles = StyleSheet.create({
     heading: {
@@ -113,6 +113,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         paddingLeft: 20
     }
-})
+});
 
 export default NewItem

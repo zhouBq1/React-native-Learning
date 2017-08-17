@@ -32,12 +32,12 @@ export default class setup extends Component {
     static  defaultProps={
         name1:'小强',
         age1 :'10',
-    }
+    };
 
     static propTypes={
         name1:PropTypes.string,
         age1:PropTypes.number,
-    }
+    };
 
     render() {
         return (
@@ -75,4 +75,4 @@ const styles= StyleSheet.create({
         color:'#333333',
         marginBottom:5,
     },
-})
+});

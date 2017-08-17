@@ -87,10 +87,10 @@ class AnimatedView extends Component{
         });
         LayoutAnimation.spring();
         console.log('the containerWidth is' + this.state.containerWidth + ' ,height is '+ this.state.containerHeight);
-    }
+    };
     _onLongPress=()=>{
         console.log('do the long press');
-    }
+    };
     render(){
         return (
             <TouchableOpacity onPress={this._onPress} onLongPress={this._onLongPress} onPressIn={()=>{console.log('press in at date:'+Date.now(

@@ -16,7 +16,7 @@ import {
 import Sound from 'react-native-sound';
 
 const lyric = 'this is a lyric \nthis is two lyric \n this is three lyric \nthis is four lyric \nthis is five lyric \n';
-var musicList= ['WilliamJoseph-Radioactive.mp3' ,'testMP3.mp3']
+var musicList= ['WilliamJoseph-Radioactive.mp3' ,'testMP3.mp3'];
 var	musicIndex = 0 ;
 const  styles = StyleSheet.create({
 	container:{
@@ -155,12 +155,12 @@ export default class SoundTestView extends Component{
 			}
 
 		})
-	}
+	};
 	_pauseSound = ()=>{
 		this.state.currentSound.pause(()=>{
 			console.log('the music now pause');
 		})
-	}
+	};
 	_musicVolumn(value:number){
 		console.log('the current Volumn is at ' + value);
 		this.state.currentSound.setVolume(value);
@@ -199,7 +199,7 @@ export default class SoundTestView extends Component{
 				}
 			})
 
-		})
+		});
 		console.log('play the next music');
 	}
 	_showMusicList(){
@@ -304,7 +304,7 @@ export default class SoundTestView extends Component{
 				}
 			]
 		} resizeMode='cover' ></Animated.Image>)
-	}
+	};
 	_lyricView = ()=>{
 		return(<View style={styles.lyricContainer}>
 			{lyric.split('\n').map((value)=>{
@@ -313,7 +313,7 @@ export default class SoundTestView extends Component{
 				</Text>
 			})}
 		</View>)
-	}
+	};
 
 	_initState = ()=> {
 		this.state = {

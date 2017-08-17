@@ -20,7 +20,7 @@ let styles = StyleSheet.create({
         // alignContent:'center' ,
         //这里不能设置alignContent ，否则，子组件的款第不能梓摄影，导致不能铺满整个屏幕，可以在子组件中重新设置alignContent来解决。
     },
-})
+});
 
 
 export default class FirstView extends Component{

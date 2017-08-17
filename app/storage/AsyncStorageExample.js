@@ -19,7 +19,7 @@ import {
 
 var PickerItemIOS = PickerIOS.Item;
 var COURSE_ITEMS=['C++','Java','Android','iOS','React Native','Swift','.Net'];
-const STORE_KEY = 'store key'
+const STORE_KEY = 'store key';
 export default class PickerIOSDemo extends Component {
 	constructor(props){
 		super(props);
@@ -69,7 +69,7 @@ export default class PickerIOSDemo extends Component {
 	//compomnent actions
 	_removePressAction=()=>{
 		this._storeActionRemove(STORE_KEY);
-	}
+	};
 	//store action
 	//add
 	_storeActionAdd= (itemKey ,itemValue)=>{
@@ -81,7 +81,7 @@ export default class PickerIOSDemo extends Component {
 			});
 			console.log('set error and result :' + error+', '+result) ;
 		});
-	}
+	};
 	//remove
 	_storeActionRemove=async(itemKey)=>{
 		AsyncStorage.removeItem(itemKey , (error ,resutl)=>{
@@ -91,7 +91,7 @@ export default class PickerIOSDemo extends Component {
 			});
 			console.log('remove the item with eror and result :' + error+ ' ,'+ resutl);
 		} )
-	}
+	};
 	//get
 	 _storeActionGet= async (itemKey)=>{
 		let tmpValue = await AsyncStorage.getItem(itemKey ,(error ,result) => {

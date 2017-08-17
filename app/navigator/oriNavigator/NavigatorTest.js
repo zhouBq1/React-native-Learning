@@ -24,7 +24,7 @@ class NavigatorOriginTest extends Component
             return Navigator.SceneConfigs.FloatFromRight;
         }
         return Navigator.SceneConfigs.FloatFromBottom;
-    }
+    };
 
     render(){
         return <Navigator

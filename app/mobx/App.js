@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 @observer
 class TodoList extends Component {
     constructor () {
-        super()
+        super();
         this.state = {
             text: '',
             showInput: false
@@ -20,13 +20,13 @@ class TodoList extends Component {
     }
     @action
     toggleInput () {
-         this.setState({ showInput: !this.state.showInput })
+         this.setState({ showInput: !this.state.showInput });
         // this.state.showInput = !this.state.showInput;
         console.warn(this.state.showInput);
     }
     @action
     addListItem () {
-        this.props.store.addListItem(this.state.text)
+        this.props.store.addListItem(this.state.text);
         // this.setState({
         //     text: '',
         //     showInput: !this.state.showInput
@@ -57,8 +57,8 @@ class TodoList extends Component {
         })
     }
     render() {
-        const { showInput } = this.state
-        const { list } = this.props.store
+        const { showInput } = this.state;
+        const { list } = this.props.store;
         return (
             <View style={{flex:1}}>
                 <View style={styles.heading}>
@@ -102,7 +102,7 @@ const NoList = () => (
         <Icon name="window-close" size={30} color="#900" />
         <Text style={styles.noListText}>No List, Add List To Get Started</Text>
     </View>
-)
+);
 
 const styles = StyleSheet.create({
     itemContainer: {
@@ -166,6 +166,6 @@ const styles = StyleSheet.create({
         fontSize: 22,
         color: '#156e9a'
     },
-})
+});
 
 export default TodoList

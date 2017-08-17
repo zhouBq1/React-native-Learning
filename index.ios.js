@@ -46,4 +46,4 @@ if(!__DEV__)
     }
 }
 
-AppRegistry.registerComponent('untitled2', () => NavigationTest_ori)
+AppRegistry.registerComponent('untitled2', () => NavigationTest_ori);

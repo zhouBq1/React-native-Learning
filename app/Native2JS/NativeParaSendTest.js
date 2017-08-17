@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 		borderWidth:2.5 ,
 	}
 
-})
+});
 
 var native_module = NativeModules.TestManager;
 var native_module_event = NativeModules.EventEmitterManager;
@@ -59,7 +59,7 @@ export default  class NativeModuleTest extends Component{
 	testFun1 = ()=>{
 		native_module.addEvent("this is a test name" ,{location:'longhua' ,property:1 });
 
-	}
+	};
 	/*
 	*  测试block 参数
 	* */
@@ -73,7 +73,7 @@ export default  class NativeModuleTest extends Component{
 			}
 		})
 
-	}
+	};
 	/*
 	* 测试promise类型的参数传递
 	* */
@@ -85,7 +85,7 @@ export default  class NativeModuleTest extends Component{
 		}catch (e){
 			console.log('the error occur :' + e);
 		}
-	}
+	};
 	/*
 	*  测试通过eventEmitter来进行事件的发送
 	* */
@@ -96,7 +96,7 @@ export default  class NativeModuleTest extends Component{
 		}) ;
 	//	由于采取的订阅方式因此需要在组件或者其他时候对listener进行取消订阅的操作。
 	// 	subscribe.remove();
-	}
+	};
 	/*javascript=>native*/
 
 	/*
@@ -107,7 +107,7 @@ export default  class NativeModuleTest extends Component{
 		this.setState({
 			mapShow:!mapShow ,
 		})
-	}
+	};
 
 	constructor(props){
 		super(props);

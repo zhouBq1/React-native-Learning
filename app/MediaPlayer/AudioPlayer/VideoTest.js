@@ -15,7 +15,7 @@ const resizeModeName = {
 	cover:Symbol.for('cover') ,
 	contain:Symbol.for('contain') ,
 	stretch:Symbol.for('stretch') ,
-}
+};
 const styles = StyleSheet.create({
 	container:{
 		flex: 1 ,
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
 		fontWeight:'normal' ,
 		alignSelf:'center',
 	},
-})
+});
 
 
 
@@ -115,32 +115,32 @@ export default class VideoTest extends Component
 
 	_onload = ()=>{
 		console.log('视频加载完毕回调');
-	}
+	};
 	_onloadStart= ()=>{
 		console.log('视频开始加载');
-	}
+	};
 	_onProgress=(pre)=>{
 		// console.log('进度控制: '+ pre);
-	}
+	};
 
 	_onEnd = ()=>{
 		console.log('视频播放完毕');
-	}
+	};
 	_onError = (err)=>{
 		console.log('视频播放出现错误：'+ err) ;
-	}
+	};
 
 	_onAudioBecomingNoisy = ()=>{
 		console.log('视频boceoming noisy');
-	}
+	};
 
 	_onAudioFocusChange = ()=>{
 		console.log('视频focus change');
-	}
+	};
 
 	_pauseStatusChange= ()=>{
 		this.pause = !this.pause;
-	}
+	};
 
 	constructor(props){
 		super(props);

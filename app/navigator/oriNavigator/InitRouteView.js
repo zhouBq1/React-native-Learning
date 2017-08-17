@@ -141,12 +141,12 @@ export default class FirstView extends Component{
         this.state.text.length && this.props.store.addListItem1(this.state.text);
         this.setState({inputFolded:inputFolded});
         this.state.text = '';
-    }
+    };
 
     @action
     _removeListItem = (rmListI)=>{
         Alert.alert('remove title' ,'ready to remove ?' ,[{text:'yes(to remove!)' ,onPress:()=>{this.props.store.removeListItem(rmListI)} } ,{text:'no(not to remove)' ,onPress:onpress=()=>{}}],null ,'login-password');
-    }
+    };
 
 
     _navigatorNext = (indx)=>
@@ -183,7 +183,7 @@ export default class FirstView extends Component{
                 store:this.props.store ,
             }
         });
-    }
+    };
 
     _textChange(newText){
         this.state.text=newText;
@@ -226,16 +226,16 @@ export default class FirstView extends Component{
 
 const HeaderText = ()=>{
     return <Text style={styles.headerText}>My List App</Text>;
-}
+};
 
 const NoList = () => {
     return <Text style={styles.noList}>No List ,Add List To Get Started</Text>
-}
+};
 
 const ListItem = () => {
     let {list} = this.props.store;
-}
+};
 
 const InputListName = ()=>{
     return (<TextInput style={styles.textInput} placeholder={'add the list name here'} autoCorrect={true}/>)
-}
+};

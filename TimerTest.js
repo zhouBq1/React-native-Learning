@@ -58,17 +58,17 @@ class TimerTest extends Component
         var now = new Date();
         console.log('this is the timeout action :'+this.state.currentDate + ' at date: '+now.getTime());
         // this._clearTimer(timerID);
-    }
+    };
     _buttonAction=()=>{
         var now = new Date();
         console.log('this is the button action :'+ this.state.currentDate +' at date: '+ now.getTime());
         this.state.currentDate += 1;
         // var intervalID = setInterval(this._timeoutAction ,2000);
         timerID = setTimeout(this._timeoutAction ,1000);
-    }
+    };
     _clearTimer=(timerId) =>{
         timerId != 0 ? clearTimeout(timerId):{};
-    }
+    };
 
     render(){
         return <View style={styles.container}>
